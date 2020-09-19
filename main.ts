@@ -1,8 +1,15 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (mySprite.overlapsWith(Target)) {
+        Target.destroy(effects.disintegrate, 200)
+        info.changeScoreBy(1)
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    Target = otherSprite
     mySprite.startEffect(effects.confetti, 200)
-    info.changeScoreBy(1)
 })
 let projectile: Sprite = null
+let Target: Sprite = null
 let mySprite: Sprite = null
 scene.setBackgroundColor(9)
 mySprite = sprites.create(img`
